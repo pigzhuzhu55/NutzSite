@@ -75,6 +75,14 @@ public class Site extends BaseModel implements Serializable {
     @Comment("主题")
     private String theme;
 
+
+    /**
+     * 移动端主题
+     */
+    @Column("mobile_theme")
+    @Comment("移动端主题")
+    private String mobileTheme;
+
     /**
      * 版权信息
      */
@@ -167,6 +175,14 @@ public class Site extends BaseModel implements Serializable {
         this.theme = theme;
     }
 
+    public String getMobileTheme() {
+        return mobileTheme;
+    }
+
+    public void setMobileTheme(String mobileTheme) {
+        this.mobileTheme = mobileTheme;
+    }
+
     public String getCopyright() {
         return copyright;
     }
@@ -210,6 +226,7 @@ public class Site extends BaseModel implements Serializable {
                 .append("description", getDescription())
                 .append("keywords", getKeywords())
                 .append("theme", getTheme())
+                .append("mobileTheme",getMobileTheme())
                 .append("copyright", getCopyright())
                 .append("customIndexView", getCustomIndexView())
                 .append("createBy", getCreateBy())

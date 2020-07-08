@@ -80,6 +80,11 @@ public class BaseServiceImpl<T> extends EntityService<T> implements BaseService<
     }
 
     @Override
+    public T fetch(Condition cnd){
+        return this.dao().fetch(this.getEntityClass(),cnd);
+    }
+
+    @Override
     public T fetchLinks(T t, String name) {
         return this.dao().fetchLinks(t, name);
     }

@@ -10,4 +10,6 @@ import io.nutz.nutzsite.module.cms.models.Site;
  * @date 2019-12-13
  */
 public interface SiteService extends BaseService<Site> {
+
+    Site getByUrl(String url);
 }

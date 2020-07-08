@@ -33,7 +33,7 @@ public class GenUtils {
     /**
      * html空间路径
      */
-    private static final String TEMPLATES_PATH = "main/resources/template";
+    private static final String TEMPLATES_PATH = "main/resources/views";
 
     /**
      * 大小写范围
@@ -102,26 +102,26 @@ public class GenUtils {
      */
     public static List<String> getListTemplates(String tplType) {
         List<String> templates = new ArrayList<String>();
-        templates.add("template/vm/java/Models.java.vm");
-        templates.add("template/vm/java/ApiController.java.vm");
+        templates.add("views/vm/java/Models.java.vm");
+        templates.add("views/vm/java/ApiController.java.vm");
         if(Globals.TPL_CRUD.equals(tplType)){
-            templates.add("template/vm/java/list/Service.java.vm");
-            templates.add("template/vm/java/list/ServiceImpl.java.vm");
-            templates.add("template/vm/java/list/Controller.java.vm");
-            templates.add("template/vm/html/list/list.html.vm");
-            templates.add("template/vm/html/list/add.html.vm");
-            templates.add("template/vm/html/list/edit.html.vm");
-            templates.add("template/vm/html/list/detail.html.vm");
+            templates.add("views/vm/java/list/Service.java.vm");
+            templates.add("views/vm/java/list/ServiceImpl.java.vm");
+            templates.add("views/vm/java/list/Controller.java.vm");
+            templates.add("views/vm/html/list/list.html.vm");
+            templates.add("views/vm/html/list/add.html.vm");
+            templates.add("views/vm/html/list/edit.html.vm");
+            templates.add("views/vm/html/list/detail.html.vm");
         }else  if(Globals.TPL_TREE.equals(tplType)){
-            templates.add("template/vm/java/tree/Service.java.vm");
-            templates.add("template/vm/java/tree/ServiceImpl.java.vm");
-            templates.add("template/vm/java/tree/Controller.java.vm");
-            templates.add("template/vm/html/tree/list.html.vm");
-            templates.add("template/vm/html/tree/add.html.vm");
-            templates.add("template/vm/html/tree/edit.html.vm");
-            templates.add("template/vm/html/tree/tree.html.vm");
+            templates.add("views/vm/java/tree/Service.java.vm");
+            templates.add("views/vm/java/tree/ServiceImpl.java.vm");
+            templates.add("views/vm/java/tree/Controller.java.vm");
+            templates.add("views/vm/html/tree/list.html.vm");
+            templates.add("views/vm/html/tree/add.html.vm");
+            templates.add("views/vm/html/tree/edit.html.vm");
+            templates.add("views/vm/html/tree/tree.html.vm");
         }
-        templates.add("template/vm/sql/sql.vm");
+        templates.add("views/vm/sql/sql.vm");
         return templates;
     }
 

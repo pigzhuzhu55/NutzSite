@@ -3,7 +3,6 @@ package io.nutz.nutzsite.common.starter;
 import org.nutz.boot.starter.WebFilterFace;
 import org.nutz.ioc.Ioc;
 import org.nutz.ioc.loader.annotation.Inject;
-import org.nutz.ioc.loader.annotation.IocBean;
 import org.sitemesh.builder.SiteMeshFilterBuilder;
 import org.sitemesh.config.ConfigurableSiteMeshFilter;
 

@@ -4,6 +4,7 @@ import io.nutz.nutzsite.common.base.Result;
 import io.nutz.nutzsite.common.utils.ShiroUtils;
 import io.nutz.nutzsite.module.cms.models.Article;
 import io.nutz.nutzsite.module.cms.services.ArticleService;
+import io.nutz.nutzsite.module.cms.util.CmsParserUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.nutz.dao.Cnd;
 import org.nutz.ioc.loader.annotation.Inject;
@@ -126,6 +127,8 @@ public class ArticleController {
                 article.setUpdateBy(ShiroUtils.getSysUserId());
                 article.setUpdateTime(new Date());
                 articleService.updateIgnoreNull(article);
+
+
             }
             return Result.success("system.success");
         } catch (Exception e) {
