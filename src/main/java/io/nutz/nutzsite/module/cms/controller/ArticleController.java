@@ -1,11 +1,16 @@
 package io.nutz.nutzsite.module.cms.controller;
 
+import cn.hutool.core.io.FileUtil;
 import io.nutz.nutzsite.common.base.Result;
 import io.nutz.nutzsite.common.utils.ShiroUtils;
 import io.nutz.nutzsite.module.cms.models.Article;
+import io.nutz.nutzsite.module.cms.models.Category;
 import io.nutz.nutzsite.module.cms.services.ArticleService;
+import io.nutz.nutzsite.module.cms.services.CategoryService;
 import io.nutz.nutzsite.module.cms.util.CmsParserUtil;
+import io.nutz.nutzsite.module.cms.util.ParserUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.jsoup.helper.StringUtil;
 import org.nutz.dao.Cnd;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
@@ -13,6 +18,7 @@ import org.nutz.lang.Lang;
 import org.nutz.lang.Strings;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
+import org.nutz.mvc.Mvcs;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.POST;
@@ -20,6 +26,7 @@ import org.nutz.mvc.annotation.Param;
 import org.nutz.plugins.slog.annotation.Slog;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -35,6 +42,9 @@ public class ArticleController {
 
     @Inject
     private ArticleService articleService;
+
+    @Inject
+    private CategoryService categoryService;
 
     @RequiresPermissions("cms:article:view")
     @At("")
@@ -128,6 +138,27 @@ public class ArticleController {
                 article.setUpdateTime(new Date());
                 articleService.updateIgnoreNull(article);
 
+                //Category category = categoryService.fetch(article.getCategoryId());
+                article = articleService.fetchLinks(article,"category");
+
+                //更新内容静态页面
+                String tmpContentFileName= article.getCategory().getCustomContentView();
+                if(!StringUtil.isBlank(tmpContentFileName)){
+                    Mvcs.getReq().setAttribute(ParserUtil.SITE_ID,article.getCategory().getSiteId());
+                    // 获取文件所在路径 首先判断用户输入的模版文件是否存在
+                    String tmpDir = ParserUtil.buildTempletPath();
+                    if (!FileUtil.exist(tmpDir)) {
+                        return Result.error("system.error");
+                    } else {
+                        try {
+                            CmsParserUtil.generate(tmpContentFileName, "index");
+                            return Result.success("system.success");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            return Result.error("system.error");
+                        }
+                    }
+                }
 
             }
             return Result.success("system.success");

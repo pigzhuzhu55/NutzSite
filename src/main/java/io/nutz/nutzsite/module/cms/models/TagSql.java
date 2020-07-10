@@ -18,7 +18,7 @@ import java.util.Date;
 public class TagSql extends BaseModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Name
+    @Id
     @Column("id")
     @Comment("")
     @ColDefine(type = ColType.VARCHAR, width = 64)

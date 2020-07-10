@@ -8,12 +8,6 @@ import freemarker.template.TemplateException;
 import io.nutz.nutzsite.module.cms.bean.TagBean;
 import io.nutz.nutzsite.module.cms.models.Tag;
 import io.nutz.nutzsite.module.cms.models.TagSql;
-import io.nutz.nutzsite.module.cms.services.SiteService;
-import io.nutz.nutzsite.module.cms.services.TagService;
-import io.nutz.nutzsite.module.cms.services.TagSqlService;
-import io.nutz.nutzsite.module.cms.services.impl.SiteServiceImpl;
-import io.nutz.nutzsite.module.cms.services.impl.TagServiceImpl;
-import io.nutz.nutzsite.module.cms.services.impl.TagSqlServiceImpl;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
 import org.nutz.dao.Sqls;
@@ -264,12 +258,12 @@ public class TagParser {
     private String rendering(Map root, String content) {
         Configuration cfg = new Configuration();
         StringTemplateLoader stringLoader = new StringTemplateLoader();
-        stringLoader.putTemplate("template", content);
+        stringLoader.putTemplate("templets", content);
         cfg.setNumberFormat("#");
         cfg.setTemplateLoader(stringLoader);
 
         try {
-            Template template = cfg.getTemplate("template", "utf-8");
+            Template template = cfg.getTemplate("templets", "utf-8");
             StringWriter writer = new StringWriter();
 
             try {

@@ -196,6 +196,30 @@ public class Article extends BaseModel implements Serializable {
     @Comment("相关文章")
     private String relation;
 
+
+
+    /**
+     * 文章作者
+     */
+    @Column("content_author")
+    @Comment("文章作者")
+    private String contentAuthor;
+
+    /**
+     * 文章缩略图
+     */
+    @Column("content_img")
+    @Comment("文章缩略图")
+    private String contentImg;
+
+    /**
+     * 发布时间
+     */
+    @Column("publish_time")
+    @Comment("发布时间")
+    private Date publishTime;
+
+
     public String getId() {
         return id;
     }
@@ -420,6 +444,31 @@ public class Article extends BaseModel implements Serializable {
         this.relation = relation;
     }
 
+
+    public String getContentAuthor() {
+        return contentAuthor;
+    }
+
+    public void setContentAuthor(String contentAuthor) {
+        this.contentAuthor = contentAuthor;
+    }
+
+    public String getContentImg() {
+        return contentImg;
+    }
+
+    public void setContentImg(String contentImg) {
+        this.contentImg = contentImg;
+    }
+
+    public Date getPublishTime() {
+        return publishTime;
+    }
+
+    public void setPublishTime(Date publishTime) {
+        this.publishTime = publishTime;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
@@ -447,6 +496,9 @@ public class Article extends BaseModel implements Serializable {
                 .append("remarks", getRemarks())
                 .append("delFlag", isDelFlag())
                 .append("relation", getRelation())
+                .append("contentAuthor", getContentAuthor())
+                .append("contentImg", getContentImg())
+                .append("publishTime", getPublishTime())
                 .toString();
     }
 }

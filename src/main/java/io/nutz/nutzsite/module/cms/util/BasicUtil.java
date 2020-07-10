@@ -4,6 +4,7 @@ import io.nutz.nutzsite.module.cms.models.Site;
 import io.nutz.nutzsite.module.cms.services.SiteService;
 import io.nutz.nutzsite.module.cms.services.impl.SiteServiceImpl;
 import org.apache.commons.lang3.StringUtils;
+import org.jsoup.helper.StringUtil;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.mvc.Mvcs;
 
@@ -22,6 +23,13 @@ public class BasicUtil {
     private static final String IDS = "ids";
 
     public static String getSiteId() {
+
+        //先看上下文里面有没有站点标识id属性
+        String siteId = Mvcs.getReq().getAttribute(ParserUtil.SITE_ID)==null?
+                StringUtils.EMPTY:Mvcs.getReq().getAttribute(ParserUtil.SITE_ID).toString();
+        if(!StringUtil.isBlank(siteId))
+            return siteId;
+
         Site site = getSite();
         return site != null ? site.getId() : "0";
     }
