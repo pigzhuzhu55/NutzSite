@@ -8,15 +8,18 @@ import org.nutz.dao.Dao;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.Lang;
 import org.nutz.lang.Strings;
+
 /**
- * 标签对应多个sql语句 服务层实现
- *
- * @author haiming
- * @date 2020-07-08
- */
+*Name: cms_tag_sql
+*Author: Caicai
+*Date: 2020-07-11 00:00:05
+*Description: 标签对应多个sql语句
+*/ 
+
 @IocBean(args = {"refer:dao"})
-public class TagSqlServiceImpl extends BaseServiceImpl<TagSql> implements TagSqlService{
+public class TagSqlServiceImpl extends BaseServiceImpl<TagSql> implements TagSqlService {
     public TagSqlServiceImpl(Dao dao) {
         super(dao);
     }
+
 }

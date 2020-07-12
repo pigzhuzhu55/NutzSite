@@ -8,15 +8,18 @@ import org.nutz.dao.Dao;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.Lang;
 import org.nutz.lang.Strings;
+
 /**
- * 标签 服务层实现
- *
- * @author haiming
- * @date 2020-07-08
+ *Name: cms_tag
+ *Author: Caicai
+ *Date: 2020-07-10 23:40:18
+ *Description: 标签
  */
+
 @IocBean(args = {"refer:dao"})
 public class TagServiceImpl extends BaseServiceImpl<Tag> implements TagService {
     public TagServiceImpl(Dao dao) {
         super(dao);
     }
+
 }
